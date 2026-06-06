@@ -34,6 +34,7 @@
       background: var(--paper);
       font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
       line-height: 1.65;
+      overflow-x: hidden;
     }
 
     a {
@@ -148,6 +149,8 @@
       gap: 8px;
       overflow-x: auto;
       padding: 10px 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
     }
 
     .nav a,
@@ -167,6 +170,7 @@
       font-weight: 850;
       text-decoration: none;
       white-space: nowrap;
+      touch-action: manipulation;
     }
 
     .print {
@@ -498,35 +502,59 @@
     }
 
     @media (max-width: 700px) {
+      body {
+        line-height: 1.58;
+      }
+
       .wrap {
-        width: min(100% - 28px, 1140px);
+        width: min(100% - 24px, 1140px);
       }
 
       .hero {
-        min-height: 82vh;
+        min-height: auto;
+        background-position: center top;
       }
 
       .hero-inner {
-        padding: 54px 0 38px;
+        padding: 44px 0 30px;
       }
 
       h1 {
-        font-size: 2.05rem;
+        max-width: 11em;
+        font-size: 1.86rem;
+        line-height: 1.14;
       }
 
       .hero-copy {
-        font-size: 1rem;
+        margin-top: 16px;
+        font-size: .98rem;
       }
 
       .sticky-inner {
         align-items: stretch;
         flex-direction: column;
         gap: 0;
-        padding: 8px 0 12px;
+        min-height: auto;
+        padding: 6px 0 8px;
+      }
+
+      .nav {
+        gap: 6px;
+        padding: 6px 0;
+      }
+
+      .nav a {
+        min-width: 46px;
+        min-height: 34px;
+        padding: 6px 10px;
+        font-size: .84rem;
       }
 
       .print {
+        min-height: 34px;
         width: 100%;
+        padding: 6px 10px;
+        font-size: .86rem;
       }
 
       .hero-facts,
@@ -538,9 +566,93 @@
         grid-template-columns: 1fr;
       }
 
+      main {
+        padding: 28px 0 44px;
+      }
+
+      .section-head {
+        margin-bottom: 14px;
+      }
+
+      h2 {
+        font-size: 1.45rem;
+      }
+
+      .section-head p {
+        margin-top: 7px;
+        font-size: .95rem;
+      }
+
+      .hero-facts {
+        gap: 8px;
+        margin-top: 22px;
+      }
+
+      .fact {
+        min-height: auto;
+        padding: 11px 12px;
+      }
+
+      .jump {
+        margin-top: 24px;
+      }
+
+      .logic-grid {
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      .logic-card {
+        min-height: auto;
+        padding: 14px;
+      }
+
+      .flow {
+        gap: 8px;
+        margin-bottom: 30px;
+      }
+
+      .flow a {
+        min-height: auto;
+        padding: 11px 12px;
+      }
+
+      .decision {
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+
+      .choice header {
+        padding: 13px 14px;
+      }
+
+      .choice h3 {
+        font-size: 1.06rem;
+      }
+
+      .choice-body {
+        padding: 14px;
+      }
+
+      .choice-body ul,
+      .summary-card ul {
+        padding-left: 18px;
+      }
+
+      .choose-line {
+        padding: 10px 12px;
+        font-size: .92rem;
+      }
+
+      .days {
+        gap: 14px;
+      }
+
       .day {
         grid-template-columns: 1fr;
-        padding: 18px;
+        gap: 16px;
+        padding: 15px;
+        box-shadow: 0 10px 24px rgba(34, 27, 19, .1);
       }
 
       .day-index {
@@ -564,6 +676,79 @@
 
       .slot {
         grid-template-columns: 58px 1fr;
+      }
+
+      .day-main h3 {
+        font-size: 1.18rem;
+      }
+
+      .theme {
+        margin-bottom: 13px;
+        font-size: .94rem;
+      }
+
+      .timeline {
+        gap: 10px;
+      }
+
+      .slot time {
+        font-size: .84rem;
+      }
+
+      .slot p {
+        font-size: .95rem;
+      }
+
+      .tags {
+        gap: 6px;
+        margin-top: 13px;
+      }
+
+      .tag {
+        padding: 3px 8px;
+        font-size: .78rem;
+      }
+
+      .side {
+        gap: 9px;
+      }
+
+      .box {
+        padding: 12px;
+      }
+
+      .summary {
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      .summary-card {
+        padding: 16px;
+      }
+
+      .notice {
+        margin-top: 16px;
+        padding: 13px 14px;
+        font-size: .94rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      h1 {
+        font-size: 1.68rem;
+      }
+
+      .hero-copy,
+      .slot p,
+      .box p,
+      .box ul,
+      .summary-card ul {
+        font-size: .9rem;
+      }
+
+      .slot {
+        grid-template-columns: 50px 1fr;
+        gap: 9px;
       }
     }
 
