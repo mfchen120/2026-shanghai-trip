@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>上海 7 日家庭行程理解版</title>
+  <style>
+    :root {
+      --ink: #202124;
+      --muted: #667085;
+      --line: #ded7cc;
+      --paper: #f7f3eb;
+      --panel: #fffaf1;
+      --panel-2: #ffffff;
+      --blue: #2f6690;
+      --green: #2f7d66;
+      --red: #a94336;
+      --gold: #b1812f;
+      --shadow: 0 18px 42px rgba(34, 27, 19, .13);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .hero {
+      min-height: 84vh;
+      color: #fff;
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(180deg, rgba(13, 17, 19, .16), rgba(13, 17, 19, .72) 58%, rgba(13, 17, 19, .94)),
+        url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Pudong_night_skyline_viewed_from_the_Bund_in_Shanghai_%2841199899084%29.jpg/1280px-Pudong_night_skyline_viewed_from_the_Bund_in_Shanghai_%2841199899084%29.jpg") center / cover;
+    }
+
+    .wrap {
+      width: min(1140px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .hero-inner {
+      padding: 64px 0 48px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #f2d19a;
+      font-size: .95rem;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 880px;
+      margin: 0;
+      font-size: 3.2rem;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 780px;
+      margin: 22px 0 0;
+      color: rgba(255, 255, 255, .88);
+      font-size: 1.12rem;
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 34px;
+      max-width: 920px;
+    }
+
+    .fact {
+      min-height: 96px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, .35);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .13);
+      backdrop-filter: blur(10px);
+    }
+
+    .fact strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: .95rem;
+    }
+
+    .fact span {
+      color: rgba(255, 255, 255, .82);
+      font-size: .9rem;
+    }
+
+    .jump {
+      margin-top: 42px;
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+      color: rgba(255, 255, 255, .88);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .jump::after {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .sticky {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 243, 235, .94);
+      backdrop-filter: blur(12px);
+    }
+
+    .sticky-inner {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    .nav a,
+    .print {
+      min-width: 54px;
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fffdf8;
+      color: var(--ink);
+      font: inherit;
+      font-size: .9rem;
+      font-weight: 850;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .print {
+      min-width: 92px;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 42px 0 64px;
+    }
+
+    section {
+      scroll-margin-top: 88px;
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.9rem;
+      line-height: 1.24;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      max-width: 760px;
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .logic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 42px;
+    }
+
+    .logic-card {
+      min-height: 148px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: 0 10px 24px rgba(34, 27, 19, .06);
+    }
+
+    .logic-card b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.02rem;
+    }
+
+    .logic-card span {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-bottom: 42px;
+    }
+
+    .flow a {
+      min-height: 92px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fffdf8;
+      text-decoration: none;
+    }
+
+    .flow strong {
+      display: block;
+      color: var(--blue);
+      font-size: .9rem;
+    }
+
+    .flow span {
+      display: block;
+      margin-top: 4px;
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    .decision {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0 42px;
+    }
+
+    .choice {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel-2);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .choice header {
+      padding: 16px 18px;
+      color: #fff;
+      background: var(--blue);
+    }
+
+    .choice:nth-child(2) header {
+      background: var(--green);
+    }
+
+    .choice h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+
+    .choice-body {
+      padding: 18px;
+    }
+
+    .choice ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .choose-line {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: var(--radius);
+      background: #f6f2e9;
+      color: #554737;
+      font-weight: 800;
+    }
+
+    .days {
+      display: grid;
+      gap: 18px;
+    }
+
+    .day {
+      display: grid;
+      grid-template-columns: 108px 1fr 310px;
+      gap: 22px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      scroll-margin-top: 92px;
+    }
+
+    .badge {
+      width: 74px;
+      height: 74px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--blue);
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .date {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 800;
+    }
+
+    .day:nth-child(2n) .badge {
+      background: var(--red);
+    }
+
+    .day:nth-child(3n) .badge {
+      background: var(--green);
+    }
+
+    .day:nth-child(4n) .badge {
+      background: var(--gold);
+    }
+
+    .day-main h3 {
+      margin: 0;
+      font-size: 1.45rem;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .theme {
+      margin: 7px 0 18px;
+      color: var(--red);
+      font-weight: 850;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .slot {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 12px;
+    }
+
+    .slot time {
+      color: var(--green);
+      font-size: .9rem;
+      font-weight: 900;
+    }
+
+    .slot p {
+      margin: 0;
+    }
+
+    .side {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .box {
+      padding: 14px;
+      border: 1px solid #eadfcc;
+      border-radius: var(--radius);
+      background: #fffdf8;
+    }
+
+    .box h4 {
+      margin: 0 0 7px;
+      color: var(--blue);
+      font-size: .92rem;
+    }
+
+    .box p,
+    .box ul {
+      margin: 0;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .box ul {
+      padding-left: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      padding: 4px 9px;
+      border: 1px solid #e5d4b6;
+      border-radius: 999px;
+      background: #fff8e9;
+      color: #73501b;
+      font-size: .82rem;
+      font-weight: 850;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .summary-card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+    }
+
+    .summary-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      letter-spacing: 0;
+    }
+
+    .summary-card ul {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .notice {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-left: 5px solid var(--red);
+      background: #fff8ed;
+      color: #55483a;
+    }
+
+    footer {
+      padding: 24px 0 42px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    @media (max-width: 1000px) {
+      h1 {
+        font-size: 2.55rem;
+      }
+
+      .hero-facts,
+      .logic-grid,
+      .flow,
+      .summary {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .day {
+        grid-template-columns: 84px 1fr;
+      }
+
+      .side {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .wrap {
+        width: min(100% - 28px, 1140px);
+      }
+
+      .hero {
+        min-height: 82vh;
+      }
+
+      .hero-inner {
+        padding: 54px 0 38px;
+      }
+
+      h1 {
+        font-size: 2.05rem;
+      }
+
+      .hero-copy {
+        font-size: 1rem;
+      }
+
+      .sticky-inner {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 0 12px;
+      }
+
+      .print {
+        width: 100%;
+      }
+
+      .hero-facts,
+      .logic-grid,
+      .flow,
+      .decision,
+      .summary,
+      .side {
+        grid-template-columns: 1fr;
+      }
+
+      .day {
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+
+      .day-index {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        align-items: center;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .badge {
+        width: 60px;
+        height: 60px;
+        font-size: 1.1rem;
+      }
+
+      .date {
+        margin-top: 0;
+      }
+
+      .slot {
+        grid-template-columns: 58px 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .hero {
+        min-height: auto;
+        color: #111;
+        background: #fff;
+        border-bottom: 2px solid #111;
+      }
+
+      .hero-inner {
+        padding: 24px 0;
+      }
+
+      .hero-copy,
+      .hero-facts,
+      .jump,
+      .sticky,
+      footer {
+        display: none;
+      }
+
+      main {
+        padding: 20px 0;
+      }
+
+      .day,
+      .choice,
+      .summary-card,
+      .logic-card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">上海 7 日家庭行程 · 2026.06.09 - 06.15</p>
+      <h1>先放慢，再進城：一份看得懂取捨的上海行程</h1>
+      <p class="hero-copy">這版把每天的主線、A/B 選項、不要做的事和備案分開呈現。核心不是塞滿景點，而是讓一家三口在上海走得順，尤其保留高二生也不會覺得太幼稚的城市感、建築感與夜景。</p>
+      <div class="hero-facts">
+        <div class="fact"><strong>航班</strong><span>BR712 09:55 TPE → 12:05 PVG<br>BR711 13:10 PVG → 15:05 TPE</span></div>
+        <div class="fact"><strong>住宿前段</strong><span>6/9、6/10 上海君瀾度假酒店<br>周祝公路 2511 號</span></div>
+        <div class="fact"><strong>住宿後段</strong><span>6/11～6/14 陸家嘴<br>釋家・設計師城市全景民宿</span></div>
+      </div>
+      <a class="jump" href="#logic">看行程邏輯</a>
+    </div>
+  </header>
+
+  <nav class="sticky" aria-label="行程導覽">
+    <div class="wrap sticky-inner">
+      <div class="nav">
+        <a href="#logic">邏輯</a>
+        <a href="#day2-choice">D2選擇</a>
+        <a href="#day1">D1</a>
+        <a href="#day2">D2</a>
+        <a href="#day3">D3</a>
+        <a href="#day4">D4</a>
+        <a href="#day5">D5</a>
+        <a href="#day6">D6</a>
+        <a href="#day7">D7</a>
+      </div>
+      <button class="print" type="button" onclick="window.print()">列印</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap">
+      <section id="logic" aria-labelledby="logic-title">
+        <div class="section-head">
+          <h2 id="logic-title">先理解這趟怎麼排</h2>
+          <p>你們的住宿位置決定了節奏：前兩天不要硬衝市中心，6/11 搬到陸家嘴後才開始集中玩上海核心區。</p>
+        </div>
+
+        <div class="logic-grid">
+          <div class="logic-card"><b>D1 只適應</b><span>抵達、入境、移動、入住已經吃掉半天，不要急著跑外灘或豫園。</span></div>
+          <div class="logic-card"><b>D2 做選擇</b><span>迪士尼整天，或新場古鎮加 Disneytown。這是整趟最大的分歧。</span></div>
+          <div class="logic-card"><b>D3 才進城</b><span>搬到陸家嘴後，豫園、城隍廟、外灘夜景就變得合理。</span></div>
+          <div class="logic-card"><b>D4-D6 是精華</b><span>法租界、成熟市區、酷老上海，三天各有性格，不混在一起。</span></div>
+        </div>
+
+        <div class="flow" aria-label="七天節奏總覽">
+          <a href="#day1"><strong>D1 休息</strong><span>浦東機場、君瀾酒店、早睡</span></a>
+          <a href="#day2"><strong>D2 彈性</strong><span>迪士尼或新場古鎮</span></a>
+          <a href="#day3"><strong>D3 經典</strong><span>豫園、城隍廟、外灘</span></a>
+          <a href="#day4"><strong>D4 法租界</strong><span>武康路、思南公館</span></a>
+          <a href="#day5"><strong>D5 成熟市區</strong><span>靜安寺、愚園路</span></a>
+          <a href="#day6"><strong>D6 酷老上海</strong><span>1933、多倫路</span></a>
+          <a href="#day7"><strong>D7 回程</strong><span>陸家嘴到浦東機場</span></a>
+        </div>
+      </section>
+
+      <section id="day2-choice" aria-labelledby="choice-title">
+        <div class="section-head">
+          <h2 id="choice-title">Day2 是整趟的關鍵選擇</h2>
+          <p>這天還住君瀾，位置比較適合迪士尼或浦東近郊。不要硬衝市中心，把體力留給 6/11 之後。</p>
+        </div>
+
+        <div class="decision">
+          <article class="choice">
+            <header><h3>Option A：上海迪士尼整天</h3></header>
+            <div class="choice-body">
+              <ul>
+                <li>兒子想玩設施，就選這版。</li>
+                <li>適合接受早出晚歸、排隊和大量步行。</li>
+                <li>優先抓創極速光輪、飛越地平線、加勒比海盜、礦山車、雷鳴山漂流。</li>
+                <li>晚上可留到夜間秀，也可傍晚撤到 Disneytown 吃飯。</li>
+              </ul>
+              <div class="choose-line">選 A 的代價：記憶點最強，但 Day3 一定要保守。</div>
+            </div>
+          </article>
+
+          <article class="choice">
+            <header><h3>Option B：新場古鎮＋Disneytown</h3></header>
+            <div class="choice-body">
+              <ul>
+                <li>迪士尼不是必要，就選這版。</li>
+                <li>上午慢慢出門去新場古鎮，中午吃小吃。</li>
+                <li>下午回君瀾休息，避開六月悶熱與午後雨。</li>
+                <li>傍晚再去 Disneytown 晚餐小逛。</li>
+              </ul>
+              <div class="choose-line">選 B 的好處：舒服很多，後面市區三天品質會更穩。</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="days" aria-label="每日行程">
+        <article class="day" id="day1">
+          <div class="day-index">
+            <div class="badge">D1</div>
+            <div class="date">6/9（二）<br>抵達日</div>
+          </div>
+          <div class="day-main">
+            <h3>浦東機場 → 上海君瀾度假酒店 → 輕鬆適應</h3>
+            <p class="theme">任務只有一個：讓身體進入旅行狀態。</p>
+            <div class="timeline">
+              <div class="slot"><time>12:05</time><p>抵達 PVG。入境、拿行李、叫車、到飯店，實際很可能已經下午 2～3 點。</p></div>
+              <div class="slot"><time>下午</time><p>前往上海君瀾度假酒店，check-in、休息、整理行李。</p></div>
+              <div class="slot"><time>晚上</time><p>飯店附近簡單晚餐，早點睡。若體力好，再去 Disneytown 吃飯小逛。</p></div>
+            </div>
+            <div class="tags"><span class="tag">不進市中心</span><span class="tag">低消耗</span><span class="tag">可選 Disneytown</span></div>
+          </div>
+          <aside class="side">
+            <div class="box"><h4>Option A</h4><p>最穩版：抵達後留在飯店。</p></div>
+            <div class="box"><h4>Option B</h4><p>有體力版：傍晚去 Disneytown 晚餐。</p></div>
+            <div class="box"><h4>不要排</h4><ul><li>外灘</li><li>陸家嘴夜景</li><li>豫園</li><li>南京路</li></ul></div>
+          </aside>
+        </article>
+
+        <article class="day" id="day2">
+          <div class="day-index">
+            <div class="badge">D2</div>
+            <div class="date">6/10（三）<br>分歧日</div>
+          </div>
+          <div class="day-main">
+            <h3>A 版迪士尼，B 版不迪士尼</h3>
+            <p class="theme">因為還住君瀾，這天最適合浦東近郊，不適合硬衝市中心。</p>
+            <div class="timeline">
+              <div class="slot"><time>A版</time><p>上海迪士尼整天。早出晚歸，優先玩比較不幼齡的熱門設施。</p></div>
+              <div class="slot"><time>A撤退</time><p>若不想硬撐，傍晚離園到 Disneytown 晚餐，再回君瀾。</p></div>
+              <div class="slot"><time>B版</time><p>新場古鎮中午小逛，下午回飯店休息，晚上 Disneytown。</p></div>
+            </div>
+            <div class="tags"><span class="tag">全程最大選擇</span><span class="tag">看兒子意願</span><span class="tag">保留體力</span></div>
+          </div>
+          <aside class="side">
+            <div class="box"><h4>一句話決策</h4><p>兒子想迪士尼，就 A；沒特別想，就 B。</p></div>
+            <div class="box"><h4>A 版風險</h4><p>很累，隔天還要換住宿，晚上不要撐到全家爆掉。</p></div>
+            <div class="box"><h4>B 版風險</h4><p>少了正式入園體驗；如果兒子其實想玩設施，可能會可惜。</p></div>
+          </aside>
+        </article>
+
+        <article class="day" id="day3">
+          <div class="day-index">
+            <div class="badge">D3</div>
+            <div class="date">6/11（四）<br>進城日</div>
+          </div>
+          <div class="day-main">
+            <h3>君瀾 → 陸家嘴民宿 → 豫園・城隍廟 → 外灘夜景</h3>
+            <p class="theme">從這天開始，才真正進入上海核心。</p>
+            <div class="timeline">
+              <div class="slot"><time>上午</time><p>君瀾退房，前往陸家嘴民宿，寄放行李或 check-in。</p></div>
+              <div class="slot"><time>中午</time><p>陸家嘴或黃浦區簡單吃，避免把午餐變成大工程。</p></div>
+              <div class="slot"><time>下午</time><p>豫園、城隍廟、九曲橋、湖心亭茶坊。</p></div>
+              <div class="slot"><time>晚上</time><p>外灘夜景，看對岸陸家嘴，再回陸家嘴民宿。</p></div>
+            </div>
+            <div class="tags"><span class="tag">經典上海</span><span class="tag">搬家日</span><span class="tag">外灘夜景</span></div>
+          </div>
+          <aside class="side">
+            <div class="box"><h4>吃什麼</h4><ul><li>佳家湯包</li><li>湖心亭茶坊</li><li>城隍廟小吃</li></ul></div>
+            <div class="box"><h4>太累版</h4><p>Day2 若玩迪士尼，Day3 可刪豫園，只保留傍晚外灘。</p></div>
+            <div class="box"><h4>雨天版</h4><p>改上海博物館或室內商場，傍晚看天氣決定外灘。</p></div>
+          </aside>
+        </article>
+
+        <article class="day" id="day4">
+          <div class="day-index">
+            <div class="badge">D4</div>
+            <div class="date">6/12（五）<br>法租界</div>
+          </div>
+          <div class="day-main">
+            <h3>武康大樓・武康路・思南公館</h3>
+            <p class="theme">歷史感、街區氣氛、美感，適合慢慢走，不適合趕。</p>
+            <div class="timeline">
+              <div class="slot"><time>上午</time><p>武康大樓、武康路散步、武康庭。</p></div>
+              <div class="slot"><time>中午</time><p>% Arabica 或 Luneurs，午餐和下午茶可以彈性合併。</p></div>
+              <div class="slot"><time>下午</time><p>思南路、思南公館、老洋房街區散步。</p></div>
+              <div class="slot"><time>晚上</time><p>阿娘麵館或附近本幫菜，之後回陸家嘴，或濱江散步。</p></div>
+            </div>
+            <div class="tags"><span class="tag">武康大樓</span><span class="tag">思南公館</span><span class="tag">咖啡散步</span></div>
+          </div>
+          <aside class="side">
+            <div class="box"><h4>主推版</h4><p>武康大樓 → 武康路 → 思南公館 → 阿娘麵館。</p></div>
+            <div class="box"><h4>加碼版</h4><p>可接田子坊，但它偏商業化，不必期待太高。</p></div>
+            <div class="box"><h4>太熱版</h4><p>上午武康路，下午咖啡廳或商場休息，晚餐再出門。</p></div>
+          </aside>
+        </article>
+
+        <article class="day" id="day5">
+          <div class="day-index">
+            <div class="badge">D5</div>
+            <div class="date">6/13（六）<br>成熟市區</div>
+          </div>
+          <div class="day-main">
+            <h3>靜安寺・南京西路・愚園路</h3>
+            <p class="theme">週六避開豫園、南京東路、外灘這些人潮爆炸區。</p>
+            <div class="timeline">
+              <div class="slot"><time>上午</time><p>靜安寺，接靜安嘉里中心或南京西路商圈。</p></div>
+              <div class="slot"><time>中午</time><p>南京西路附近吃飯，保留冷氣與休息。</p></div>
+              <div class="slot"><time>下午</time><p>愚園路散步，文青小店、咖啡、老建築街區。</p></div>
+              <div class="slot"><time>晚上</time><p>人和館、保羅酒家或光明邨大酒家，選一餐本幫菜即可。</p></div>
+            </div>
+            <div class="tags"><span class="tag">靜安寺</span><span class="tag">南京西路</span><span class="tag">愚園路</span></div>
+          </div>
+          <aside class="side">
+            <div class="box"><h4>最穩版</h4><p>靜安寺 → 南京西路 → 愚園路 → 本幫菜。</p></div>
+            <div class="box"><h4>購物版</h4><p>靜安嘉里中心、久光百貨、南京西路，晚上短走愚園路。</p></div>
+            <div class="box"><h4>雨天版</h4><p>靜安寺外觀、商場、咖啡、晚餐本幫菜。</p></div>
+          </aside>
+        </article>
+
+        <article class="day" id="day6">
+          <div class="day-index">
+            <div class="badge">D6</div>
+            <div class="date">6/14（日）<br>酷老上海</div>
+          </div>
+          <div class="day-main">
+            <h3>1933 老場坊・多倫路・魯迅公園</h3>
+            <p class="theme">不是標準觀光客路線，但比較有個性，也比較不童趣。</p>
+            <div class="timeline">
+              <div class="slot"><time>上午</time><p>1933 老場坊。老屠宰場改造的設計、展覽、餐飲空間，混凝土迷宮感很強。</p></div>
+              <div class="slot"><time>中午</time><p>大壺春，或附近簡單吃。</p></div>
+              <div class="slot"><time>下午</time><p>多倫路文化名人街、魯迅公園周邊、萬壽齋。</p></div>
+              <div class="slot"><time>晚上</time><p>看體力決定回陸家嘴，或補北外灘、外白渡橋夜景。</p></div>
+            </div>
+            <div class="tags"><span class="tag">1933 老場坊</span><span class="tag">多倫路</span><span class="tag">大壺春</span></div>
+          </div>
+          <aside class="side">
+            <div class="box"><h4>主推版</h4><p>1933 → 多倫路 → 魯迅公園 → 萬壽齋。</p></div>
+            <div class="box"><h4>夜景補完</h4><p>Day3 外灘天氣不好，可這天傍晚補北外灘或外白渡橋。</p></div>
+            <div class="box"><h4>刪減版</h4><p>只去 1933 和大壺春，前幾天太累就回陸家嘴休息。</p></div>
+          </aside>
+        </article>
+
+        <article class="day" id="day7">
+          <div class="day-index">
+            <div class="badge">D7</div>
+            <div class="date">6/15（一）<br>回程日</div>
+          </div>
+          <div class="day-main">
+            <h3>陸家嘴 → 浦東機場 → 桃園</h3>
+            <p class="theme">這天不要再排正式景點，航班 13:10 起飛，早上其實很緊。</p>
+            <div class="timeline">
+              <div class="slot"><time>早上</time><p>民宿附近早餐，整理行李，退房。</p></div>
+              <div class="slot"><time>09:30</time><p>保守版：一家三口行李多、怕趕，建議這時間左右離開陸家嘴。</p></div>
+              <div class="slot"><time>10:00</time><p>稍微從容版：行李不多、叫車順利、對流程有把握才考慮。</p></div>
+              <div class="slot"><time>中午</time><p>浦東機場 check-in、安檢、出境、簡單午餐，搭 BR711 回桃園。</p></div>
+            </div>
+            <div class="tags"><span class="tag">純回程</span><span class="tag">不排景點</span><span class="tag">機場補貨</span></div>
+          </div>
+          <aside class="side">
+            <div class="box"><h4>不要排</h4><ul><li>南京路</li><li>外灘</li><li>豫園</li><li>伴手禮專程採買</li></ul></div>
+            <div class="box"><h4>伴手禮</h4><p>請前幾天完成，Day7 機場只做最後補貨。</p></div>
+            <div class="box"><h4>核心提醒</h4><p>回程日的勝利條件是穩穩到機場，不是再多玩一個點。</p></div>
+          </aside>
+        </article>
+      </section>
+
+      <section class="summary" aria-label="伴手禮與雨天備案">
+        <div class="summary-card">
+          <h3>伴手禮安排</h3>
+          <ul>
+            <li>不要放 Day7 專程採買。</li>
+            <li>Day5 可在南京西路、淮海中路、光明邨買鮮肉月餅、熟食或糕點。</li>
+            <li>Day6 若順路，再補沈大成、老大房、泰康食品。</li>
+            <li>鮮肉月餅和熟食注意保存，不要太早買。</li>
+          </ul>
+        </div>
+
+        <div class="summary-card">
+          <h3>雨天與太熱備案</h3>
+          <ul>
+            <li>上海博物館。</li>
+            <li>靜安嘉里中心、陸家嘴商場。</li>
+            <li>武康路、愚園路周邊咖啡廳。</li>
+            <li>上海中心或陸家嘴室內空間。</li>
+            <li>飯店或民宿休息。</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="notice">
+        最終一句話：D1 休息、D2 彈性、D3 經典上海、D4 法租界、D5 成熟市區、D6 酷老上海、D7 純回程。這樣每天都有主題，也不會把一家三口的體力一次燒完。
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      依使用者提供行程文字整理。圖片來源：Wikimedia Commons，Pudong night skyline viewed from the Bund in Shanghai，David Zhang，CC BY-SA 2.0。
+    </div>
+  </footer>
+</body>
+</html>
